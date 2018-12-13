@@ -20,7 +20,7 @@ public class Hashtable<k, v> {
     {
         number_of_buckets = 250000; // creates the no of buckets.
         //bigger size so it runs faster
-        // fix the bug where the num_buckets if too small, takes too long. 
+        // fix the bug where the num_buckets if too small, takes too long.
         buckets = new HashNode[number_of_buckets];
         // makes the buckets and initializes the array to the num buckets size
         size = 0;
@@ -44,7 +44,7 @@ public class Hashtable<k, v> {
     }
     public boolean containsKey(String key) {
         // this is similar to get key
-        // returns a boolean to see if the ket exits or not. 
+        // returns a boolean to see if the ket exits or not.
         int bucketidfinder = getBucket(key);
         HashNode currentnode = buckets[bucketidfinder];
         while (currentnode != null) {
@@ -69,26 +69,12 @@ public class Hashtable<k, v> {
             currentnode = currentnode.next;
         }
         size++;
-        // make size bigger
-        if (buckets.length == size)
-            // create a new array with larger buckets
-        {
-            grow_array();
-        }
         // put new hash node into the buckets
         HashNode thenewnode = new HashNode(key, value);
         thenewnode.next = buckets[bucketidfinder];
         buckets[bucketidfinder] = thenewnode;
     }
 
-    private void grow_array() {
-        // grow array function that grows the array.
-        HashNode newArr[] = new HashNode[buckets.length*2];
-        for(int i = 0; i < size; i++){
-            newArr[i] = buckets[i];
-        }
-        buckets = newArr;
-    }
     public String remove(String key) {
         // remove function that goes through and removes the specific key value
         // hash node pair
@@ -99,6 +85,7 @@ public class Hashtable<k, v> {
             prevnode = currentnode;
             currentnode = currentnode.next;
         }
+        // conditions based on the location of the hashnode
             if (currentnode.key.equals(key))
                 if (currentnode == null) {
                     return null;
